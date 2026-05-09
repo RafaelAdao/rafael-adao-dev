@@ -3,6 +3,11 @@ type: blog
 title: "Testando Funções no ClickHouse com um Exemplo de Segmentação"
 slug: testando-funcoes-clickhouse-segmentacao
 date: 2025-03-05
+category: Bancos Colunares
+tags:
+  - Architecture
+  - ClickHouse
+  - Elasticsearch
 description: UDFs no ClickHouse para operadores de comparação, tabela de critérios em array de tuplas, consultas com arrayAll e JSONExtractString, e materialized view para membership de segmentos (exemplo educativo tipo CDP).
 translationKey: testando-funcoes-clickhouse-segmentacao
 toc: true
@@ -24,7 +29,7 @@ Neste post a intenção é explorar um exemplo prático usando o ClickHouse para
 
 Uma Customer Data Platform (CDP) é um conceito de tecnologia de marketing projetada para unificar dados de clientes provenientes de diversas fontes, criando perfis únicos e centralizados. Esses perfis permitem modelar comportamentos, analisar dados e compartilhar informações com sistemas que precisam deles, facilitando a personalização de interações e decisões em tempo real. Segundo o material da [DataEM](https://www.dataem.com/cdp-periodic-table), as CDPs são categorizadas por objetivos específicos, como gestão de dados, análise e medição, otimização preditiva, geração de demanda, habilitar interações em tempo real e orquestração de decisões omnichannel.
 
-![Diagrama ilustrativo de CDP e fluxo de dados](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6j4iPTY-TlKAQpc-j5YLdQ.png)
+![Diagrama ilustrativo de CDP e fluxo de dados](/images/posts/medium-1-6j4iPTY-TlKAQpc-j5YLdQ.webp)
 
 A segmentação é o processo de dividir um grande grupo de entidades (contatos, usuários, clientes, produtos, etc.) em subgrupos menores e mais homogêneos com base em critérios específicos. Vou utilizar a entidade contato para descrever os exemplos.
 
@@ -45,7 +50,7 @@ As regras de uma segmentação básica poderiam ser expressas como:
 
 O processo envolve avaliar cada entidade contra os critérios definidos para cada segmento. Este é um processo que pode ser computacionalmente intensivo em grandes conjuntos de dados, especialmente se houver muitos segmentos e regras complexas.
 
-![Entidades, eventos e critérios na segmentação](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*eL8xz2j75n69dIGqzR3rgw.png)
+![Entidades, eventos e critérios na segmentação](/images/posts/medium-1-eL8xz2j75n69dIGqzR3rgw.webp)
 
 ## Escopo a ser explorado
 
@@ -470,7 +475,7 @@ Isso seria **extremamente ineficiente**, especialmente em cenários de alta card
 
 Uma **materialized view** é uma estrutura de banco de dados que armazena os resultados de uma consulta pré-computada e persistida em disco, permitindo acesso rápido aos dados sem a necessidade de reprocessar a lógica da consulta toda vez que ela é executada. Diferentemente de uma visão padrão (view), que apenas define a consulta e executa-a dinamicamente, a materialized view armazena fisicamente os dados resultantes. Consulte a [documentação oficial do ClickHouse sobre incremental materialized view](https://clickhouse.com/docs/materialized-view/incremental-materialized-view).
 
-![Diagrama da documentação do ClickHouse sobre materialized views incrementais](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*HaQDQKDMXMnUPUXD.png)
+![Diagrama da documentação do ClickHouse sobre materialized views incrementais](/images/posts/medium-0-HaQDQKDMXMnUPUXD.webp)
 
 Para manter os resultados de segmentação atualizados automaticamente, vamos à criação da materialized view. O objetivo é **materializar os resultados da segmentação** no tempo de **escrita** de contatos no banco de dados.
 

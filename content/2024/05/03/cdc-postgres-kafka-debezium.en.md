@@ -3,6 +3,11 @@ type: blog
 title: "Change Data Capture from Postgres and Publish to Kafka"
 slug: cdc-postgres-kafka-debezium
 date: 2024-05-03
+category: Data Engineering
+tags:
+  - Architecture
+  - Kafka
+  - PostgreSQL
 description: Capture row-level changes from PostgreSQL and stream them to Kafka using Debezium and Kafka Connect-Docker setup, connectors, and REPLICA IDENTITY for updates.
 translationKey: cdc-postgres-kafka-debezium
 toc: true
@@ -35,13 +40,13 @@ There are big challenges with this approach:
 
 The traditional way to keep consistency between these databases is to use the ETL (Extract, Transform, Load) process. The ETL process is a batch-oriented process that extracts data from the source database, transforms the data, and loads the data into the target database. The ETL process has some limitations, like the ETL process is batch-oriented, which means it can’t provide real-time data synchronization. The ETL process is also complex and expensive.
 
-![ETL process example](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*S8SeTl7W-91EkDHJ.png)
+![ETL process example](/images/posts/medium-0-S8SeTl7W-91EkDHJ.webp)
 
 ### Change Data Capture (CDC)
 
 Change Data Capture, or CDC, is an older term for a system that monitors and captures the changes in data so that other software can respond to those changes. Data warehouses often had built-in CDC support, since data warehouses need to stay up-to-date as the data changed in the upstream OLTP databases.
 
-![CDC process example](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*6oY8EZk4XPhzx2-G.png)
+![CDC process example](/images/posts/medium-0-6oY8EZk4XPhzx2-G.webp)
 
 Using Debezium as a CDC tool
 ----------------------------
@@ -60,7 +65,7 @@ Let’s set up the required components - Zookeeper, Kafka, PostgreSQL, and Conne
 
 Zookeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. Let’s start by running Zookeeper:
 
-```
+```sh
 docker run - rm \
  - name zookeeper \
  -p 2181:2181 \
@@ -71,7 +76,7 @@ docker run - rm \
 
 Kafka is a distributed streaming platform that is commonly used for building real-time streaming data pipelines and applications.
 
-```
+```sh
 docker run - rm \
  - name kafka \
  -p 9092:9092 \
@@ -84,7 +89,7 @@ docker run - rm \
 
 Let’s launch a PostgreSQL instance:
 
-```
+```sh
 docker run - rm \
  - name postgres \
  -p 5432:5432 \
@@ -98,25 +103,25 @@ Let’s change the _wal_level_ to _logical_ in the _postgresql.conf_ file. Postg
 
 1. Open a bash shell in the PostgreSQL container:
 
-```
+```sh
 docker exec -it postgres bash
 ```
 
 2. Find the _postgresql.conf_ file:
 
-```
+```sh
 find / -name postgresql.conf
 ```
 
 3. Edit the _postgresql.conf_ file, uncomment the _wal_level_ line, and set it to _logical_
 
-```
+```sh
 wal_level = logical
 ```
 
 4. Exit and restart the PostgreSQL container:
 
-```
+```sh
 docker restart postgres
 ```
 
@@ -126,13 +131,13 @@ Let’s create a database and table in PostgreSQL:
 
 1. Open a psql shell in the PostgreSQL container:
 
-```
+```sh
 docker exec -it postgres psql -U postgres
 ```
 
 2. Create a database and table, and insert some data:
 
-```
+```sql
 CREATE DATABASE inventory;
 \c inventory;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -157,7 +162,7 @@ Debezium Connect is a distributed service that captures row-level changes in you
 
 1. Let’s start Debezium Connect:
 
-```
+```sh
 docker run - rm \
  - name connect \
  -p 8083:8083 \
@@ -172,7 +177,7 @@ docker run - rm \
 
 2. Register the Debezium Postgres connector:
 
-```
+```sh
 curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" localhost:8083/connectors/ -d '{
  "name": "inventory-connector",
  "config": {
@@ -190,19 +195,19 @@ curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" 
 
 Let’s check the status of the connector:
 
-```
+```sh
 curl -H "Accept:application/json" localhost:8083/connectors/inventory-connector/status
 ```
 
 If the connector is running, you should see a response like this:
 
-```
+```json
 {"name":"inventory-connector","connector":{"state":"RUNNING","worker_id":"172.17.0.5:8083"},"tasks":[{"id":0,"state":"RUNNING","worker_id":"172.17.0.5:8083"}],"type":"source"}
 ```
 
 Let’s check the topics created by the connector:
 
-```
+```sh
 docker exec connect /kafka/bin/kafka-topics.sh - bootstrap-server kafka:9092 - list
 ```
 
@@ -210,7 +215,7 @@ You should see the _inventory.public.products_ topic.
 
 Now, let’s consume the _inventory.public.products_ topic:
 
-```
+```sh
 docker exec connect /kafka/bin/kafka-console-consumer.sh - bootstrap-server kafka:9092 - topic inventory.public.products - from-beginning
 ```
 
@@ -219,7 +224,7 @@ For default, the Debezium Postgres connector uses the _snapshot.mode_ property s
 
 Let’s analyze the data in the _inventory.public.products_ topic:
 
-```
+```json
 {
  "schema": {…},
  "payload": {…}
@@ -230,7 +235,7 @@ The _schema_ field specifies a Kafka Connect schema that describes the structure
 
 Let’s dig into the _payload_ field:
 
-```
+```json
 {
   "schema": {…},
   "payload": {
@@ -266,13 +271,13 @@ Now, the important field is the _op_ field. The _op_ field specifies the operati
 
 Let’s change the data in the _products_ table to see the data change in the _inventory.public.products_ topic:
 
-```
+```sh
 docker exec postgres psql -U postgres -d inventory -c "UPDATE products SET weight = 0.5 WHERE name = 'hammer'"
 ```
 
 The _inventory.public.products_ topic should now contain the data change.
 
-```
+```json
 {
   "schema": {…},
   "payload": {
@@ -295,19 +300,19 @@ The _op_ field now has the “u” value, which means that the row was updated. 
 
 Changing the _REPLICA IDENTITY_ of the _products_ table to _FULL_ will make the _before_ field contain the previous data on update and delete operations:
 
-```
+```sh
 docker exec postgres psql -U postgres -d inventory -c "ALTER TABLE products REPLICA IDENTITY FULL"
 ```
 
 Now, let’s update the _products_ table again:
 
-```
+```sh
 docker exec postgres psql -U postgres -d inventory -c "UPDATE products SET weight = 1.5 WHERE name = 'hammer'"
 ```
 
 The _inventory.public.products_ topic should now contain the data change:
 
-```
+```json
 {
   "schema": {…},
   "payload": {

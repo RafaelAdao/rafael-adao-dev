@@ -3,6 +3,10 @@ type: blog
 title: "Exploring ClickHouse: A Beginner’s Journey"
 slug: exploring-clickhouse-beginners-journey
 date: 2025-02-22
+category: Columnar Databases
+tags:
+  - Architecture
+  - ClickHouse
 description: First steps with ClickHouse OLAP-Docker Compose demo, JSON type config, ReplacingMergeTree, multi-tenant entities table, inserts, queries, and FINAL for deduplication.
 translationKey: exploring-clickhouse-beginners-journey
 toc: true
@@ -112,7 +116,7 @@ Once the container is running, you can access ClickHouse via:
 
 - **HTTP interface:** Open [http://localhost:18123/play?password=changeme](http://localhost:18123/play?password=changeme) in your browser to use the web interface.
 
-![ClickHouse Play UI in the browser](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*T3dNO8qVQCESWE6iWD-r9g.png)
+![ClickHouse Play UI in the browser](/images/posts/medium-1-T3dNO8qVQCESWE6iWD-r9g.webp)
 
 - **ClickHouse client:** Using `clickhouse-client` via Docker:
 
@@ -120,7 +124,7 @@ Once the container is running, you can access ClickHouse via:
 docker exec -it clickhouse clickhouse-client
 ```
 
-![clickhouse-client session](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*FuM8wj2gCJbr7MbdTHaHlg.png)
+![clickhouse-client session](/images/posts/medium-1-FuM8wj2gCJbr7MbdTHaHlg.webp)
 
 For additional details on connecting to ClickHouse, see the [ClickHouse interface documentation](https://clickhouse.com/docs/en/interfaces/).
 
@@ -386,4 +390,4 @@ As I continue learning, the [GitHub repository](https://github.com/RafaelAdao/cd
 
 If you’re interested in diving deeper into ClickHouse, I highly recommend [ClickHouse Learn](https://learn.clickhouse.com/) - interactive courses, tutorials, and hands-on exercises.
 
-![ClickHouse Learn landing page](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*YojJ9yzPn9jWVfnIjsCCnQ.png)
+![ClickHouse Learn landing page](/images/posts/medium-1-YojJ9yzPn9jWVfnIjsCCnQ.webp)
