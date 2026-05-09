@@ -8,54 +8,13 @@ defaultContentLanguage: pt
 
 languages:
   pt:
-    languageName: Português
-    languageCode: pt-BR
+    label: Português
+    locale: pt-BR
     weight: 1
   en:
-    languageName: English
-    languageCode: en
+    label: English
+    locale: en
     weight: 2
-
-# Dated posts live under content/YYYY/MM/DD/; each year is a Hugo section.
-permalinks:
-  "1998": /:year/:month/:day/:slug/
-  "1999": /:year/:month/:day/:slug/
-  "2000": /:year/:month/:day/:slug/
-  "2001": /:year/:month/:day/:slug/
-  "2002": /:year/:month/:day/:slug/
-  "2003": /:year/:month/:day/:slug/
-  "2004": /:year/:month/:day/:slug/
-  "2005": /:year/:month/:day/:slug/
-  "2006": /:year/:month/:day/:slug/
-  "2007": /:year/:month/:day/:slug/
-  "2008": /:year/:month/:day/:slug/
-  "2009": /:year/:month/:day/:slug/
-  "2010": /:year/:month/:day/:slug/
-  "2011": /:year/:month/:day/:slug/
-  "2012": /:year/:month/:day/:slug/
-  "2013": /:year/:month/:day/:slug/
-  "2014": /:year/:month/:day/:slug/
-  "2015": /:year/:month/:day/:slug/
-  "2016": /:year/:month/:day/:slug/
-  "2017": /:year/:month/:day/:slug/
-  "2018": /:year/:month/:day/:slug/
-  "2019": /:year/:month/:day/:slug/
-  "2020": /:year/:month/:day/:slug/
-  "2021": /:year/:month/:day/:slug/
-  "2022": /:year/:month/:day/:slug/
-  "2023": /:year/:month/:day/:slug/
-  "2024": /:year/:month/:day/:slug/
-  "2025": /:year/:month/:day/:slug/
-  "2026": /:year/:month/:day/:slug/
-  "2027": /:year/:month/:day/:slug/
-  "2028": /:year/:month/:day/:slug/
-  "2029": /:year/:month/:day/:slug/
-  "2030": /:year/:month/:day/:slug/
-  "2031": /:year/:month/:day/:slug/
-  "2032": /:year/:month/:day/:slug/
-  "2033": /:year/:month/:day/:slug/
-  "2034": /:year/:month/:day/:slug/
-  "2035": /:year/:month/:day/:slug/
 
 module:
   imports:
@@ -69,21 +28,7 @@ markup:
     noClasses: false
 
 menu:
-  main:
-    - name: Search
-      weight: 10
-      params:
-        type: search
-    - name: GitHub
-      weight: 20
-      url: "https://github.com/rafaeladao/"
-      params:
-        icon: github
-    - name: LinkedIn
-      weight: 30
-      url: "https://www.linkedin.com/in/rafael-adao/"
-      params:
-        type: link
+  main: []
 
 params:
   theme:
@@ -95,8 +40,13 @@ params:
     displayLogo: false
 
   footer:
-    displayCopyright: true
+    enable: false
+    displayCopyright: false
     displayPoweredBy: false
+
+  terror:
+    githubURL: "https://github.com/rafaeladao/"
+    linkedinURL: "https://www.linkedin.com/in/rafael-adao/"
 
   editURL:
     enable: false

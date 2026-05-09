@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 1) Regenera listagens na home (_index.md / _index.en.md) — scripts/generate_index.py
+# 1) Regenera listagens na home (_index.md / _index.en.md)  -  scripts/generate_index.py
 # 2) Build Hugo com limpeza (--gc), p.ex. índice de pesquisa do tema.
 set -euo pipefail
 

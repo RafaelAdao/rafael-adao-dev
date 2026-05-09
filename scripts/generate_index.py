@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Regenera content/_index.md (pt-BR, idioma padrão) e _index.en.md a partir dos posts em content/AAAA/MM/DD/.
+"""Sincroniza front matter da home (content/_index.md e _index.en.md).
 
-Posts em PT: <slug>.md. Traduções: <slug>.en.md.
+A listagem de artigos é renderizada pelo template Hugo (layouts/home.html); o corpo
+destes ficheiros fica vazio. Opções:
 
-Opções:
-  --future   inclui posts com data no futuro
+  --future   inclui posts com data no futuro (apenas para estatísticas no stdout)
 """
 
 from __future__ import annotations
@@ -22,27 +22,7 @@ INDEX_DEFAULT = CONTENT / "_index.md"
 INDEX_EN = CONTENT / "_index.en.md"
 DELIM = "---"
 
-PT_MONTHS = [
-    "",
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-]
-
 INCLUDE_FUTURE = "--future" in sys.argv
-
-
-def escape_md(text: str) -> str:
-    return text.replace("[", "\\[").replace("]", "\\]")
 
 
 def _parse_scalar(val: str):
@@ -169,40 +149,26 @@ def group_by_month(posts: list[dict]) -> dict[tuple[int, int], list[dict]]:
     return dict(g)
 
 
-def render_months(grouped: dict[tuple[int, int], list[dict]], lang: str) -> str:
-    lines: list[str] = []
-    for year, month in sorted(grouped.keys(), reverse=True):
-        mname = PT_MONTHS[month] if lang == "pt" else date(2000, month, 1).strftime("%B")
-        lines.append(f"## {year} - {mname}\n")
-        for post in grouped[(year, month)]:
-            t = escape_md(str(post["title"]))
-            lines.append(f"- [{t}]({post['url']})")
-        lines.append("")
-    return "\n".join(lines).rstrip() + "\n"
-
-
 def write_index(path: Path, title: str, lang: str, grouped: dict) -> None:
-    body = render_months(grouped, lang)
     lines = [
         DELIM,
         f"title: {json.dumps(title, ensure_ascii=False)}",
         "translationKey: home",
-        "toc: true",
+        "toc: false",
         "sidebar:",
         "  hide: true",
         f"{DELIM}\n",
-        body,
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
     n = sum(len(v) for v in grouped.values())
-    print(f"Gerado {path} ({n} posts).")
+    print(f"Gerado {path} (front matter only; {n} posts no índice Hugo).")
 
 
 def main() -> None:
     grouped_pt = group_by_month(collect("pt"))
-    write_index(INDEX_DEFAULT, "Rafael Adão — Blog", "pt", grouped_pt)
+    write_index(INDEX_DEFAULT, "Rafael Adão  -  Blog", "pt", grouped_pt)
     grouped_en = group_by_month(collect("en"))
-    write_index(INDEX_EN, "Rafael Adão — Blog", "en", grouped_en)
+    write_index(INDEX_EN, "Rafael Adão  -  Blog", "en", grouped_en)
 
 
 if __name__ == "__main__":
