@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <div class="terror-page">
+    <div class="terror-page__grid">
+      <div class="terror-page__main">
+        <main id="content">
+          <header class="terror-home__head">
+            <h2 class="terror-home__h2">{{ T "terror.topicsTitle" }}</h2>
+            <span class="terror-home__hint">{{ T "terror.topicsIndexHint" }}</span>
+          </header>
+
+          <p class="post-content">{{ T "terror.topicsIndexIntro" }}</p>
+
+          <div class="terror-sidebar__tags terror-topic__index-tags">
+            {{- range site.Taxonomies.tags.Alphabetical -}}
+              <a href="{{ .Page.RelPermalink }}" class="terror-sidebar__tag">{{ .Page.Title }}</a>
+            {{- end -}}
+          </div>
+        </main>
+      </div>
+      {{ partial "terror-sidebar.html" . }}
+    </div>
+  </div>
+{{ end }}

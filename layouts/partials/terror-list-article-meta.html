@@ -1,0 +1,7 @@
+{{- /* Page context: category badge + publication date (matches goal.html list row). */ -}}
+<div class="terror-home__meta">
+  <span class="terror-home__category">{{ with .Params.category }}{{ . }}{{ else }}{{ T "terror.defaultCategory" }}{{ end }}</span>
+  {{- if not .Date.IsZero -}}
+    <time class="terror-home__date" datetime="{{ .Date.Format "2006-01-02" }}">{{- partial "utils/format-date" .Date -}}</time>
+  {{- end -}}
+</div>

@@ -1,0 +1,36 @@
+onThisPage: Arquivo
+
+searchPlaceholder: Pesquisar artigos…
+
+terror:
+  searchArticles: Pesquisar Artigos
+  brandPrefix: Terror in
+  brandAccent: Software
+  tagline: Escrito por Rafael Adão
+  navAria: Navegação principal
+  navArticles: Artigos
+  navResources: Recursos
+  navAbout: Sobre o Autor
+  switchLanguage: Ver em outro idioma
+  langLabel:
+    en: EN
+    pt: PT-BR
+  toggleTheme: Alternar tema claro ou escuro
+  copyright: © 2026 Rafael Adão. Todos os direitos reservados.
+  sidebarAria: Informações do autor
+  sidebarRole: STAFF SOFTWARE ENGINEER
+  sidebarBio: Reflexões de um engenheiro entre sistemas distribuídos e fichários de papel.
+  topicsTitle: Tópicos Frequentes
+  latestArticles: Últimos Artigos
+  listHint: Mostrando posts recentes
+  readFull: Ler artigo completo
+  defaultCategory: Blog
+  backHome: Voltar ao início
+  linkGitHub: GitHub
+  linkLinkedIn: LinkedIn
+  topicHint: Artigos etiquetados com este tópico
+  allTopicsLink: Ver índice de todos os tópicos
+  allTopicsLinkShort: Índice
+  topicsIndexHint: Lista alfabética
+  topicsIndexIntro: Escolha um tópico para ver os artigos associados.
+  topicNoPosts: Ainda não há artigos com este tópico

@@ -1,0 +1,36 @@
+onThisPage: Archive
+
+searchPlaceholder: Search articles…
+
+terror:
+  searchArticles: Search Articles
+  brandPrefix: Terror in
+  brandAccent: Software
+  tagline: Written by Rafael Adão
+  navAria: Main navigation
+  navArticles: Articles
+  navResources: Resources
+  navAbout: About the Author
+  switchLanguage: View in another language
+  langLabel:
+    en: EN
+    pt: PT-BR
+  toggleTheme: Toggle light or dark theme
+  copyright: © 2026 Rafael Adão. All rights reserved.
+  sidebarAria: Author information
+  sidebarRole: STAFF SOFTWARE ENGINEER
+  sidebarBio: Reflections of an engineer between distributed systems and paper slip-boxes.
+  topicsTitle: Frequent Topics
+  latestArticles: Latest Articles
+  listHint: Showing recent posts
+  readFull: Read full article
+  defaultCategory: Blog
+  backHome: Back to home
+  linkGitHub: GitHub
+  linkLinkedIn: LinkedIn
+  topicHint: Articles tagged with this topic
+  allTopicsLink: Browse all topics
+  allTopicsLinkShort: Index
+  topicsIndexHint: Alphabetical list
+  topicsIndexIntro: Pick a topic to see related articles.
+  topicNoPosts: No articles with this topic yet

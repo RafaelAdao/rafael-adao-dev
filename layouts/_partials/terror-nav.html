@@ -1,0 +1,73 @@
+{{- $p := . -}}
+{{- $articles := site.Home.RelPermalink -}}
+{{- $rec := relLangURL "/resources/" -}}
+{{- $about := relLangURL "/about/" -}}
+{{- $pathClean := strings.TrimSuffix "/" $p.RelPermalink -}}
+{{- $recClean := strings.TrimSuffix "/" $rec -}}
+{{- $aboutClean := strings.TrimSuffix "/" $about -}}
+{{- $isBlogPost := and (eq $p.Type "blog") (not $p.IsHome) -}}
+{{- $isTopicBrowse := strings.Contains $p.RelPermalink "/tags/" -}}
+{{- $isArticles := or $p.IsHome $isBlogPost $isTopicBrowse -}}
+{{- $isRec := eq $pathClean $recClean -}}
+{{- $isAbout := eq $pathClean $aboutClean -}}
+{{- $wantLang := cond (eq $p.Site.Language.Lang "pt") "en" "pt" -}}
+{{- $altURL := "" -}}
+{{- range $p.AllTranslations -}}
+  {{- if eq .Lang $wantLang -}}{{- $altURL = .RelPermalink -}}{{- end -}}
+{{- end -}}
+{{- if eq $altURL "" -}}
+  {{- range site.Home.AllTranslations -}}
+    {{- if eq .Language.Lang $wantLang -}}{{- $altURL = .RelPermalink -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<nav class="terror-nav" aria-label="{{ T "terror.navAria" }}">
+  <div class="terror-nav__inner">
+    <div class="terror-nav__links">
+      <a href="{{ $articles }}" class="terror-nav__item{{ if $isArticles }} is-active{{ end }}"{{ if $isArticles }} aria-current="page"{{ end }}>{{ T "terror.navArticles" }}</a>
+      <a href="{{ $rec }}" class="terror-nav__item{{ if $isRec }} is-active{{ end }}"{{ if $isRec }} aria-current="page"{{ end }}>{{ T "terror.navResources" }}</a>
+      <a href="{{ $about }}" class="terror-nav__item{{ if $isAbout }} is-active{{ end }}"{{ if $isAbout }} aria-current="page"{{ end }}>{{ T "terror.navAbout" }}</a>
+    </div>
+    <div class="terror-nav__tools">
+      {{- if ne $altURL "" -}}
+        <a href="{{ $altURL }}" class="terror-nav__tool" hreflang="{{ $wantLang }}" rel="alternate" title="{{ T "terror.switchLanguage" }}">{{ T (printf "terror.langLabel.%s" $wantLang) }}</a>
+      {{- end -}}
+      <button type="button" class="terror-nav__tool terror-nav__theme" data-terror-theme-toggle aria-label="{{ T "terror.toggleTheme" }}">
+        <span class="terror-nav__theme-icon terror-nav__theme-icon--moon" aria-hidden="true">◐</span>
+        <span class="terror-nav__theme-icon terror-nav__theme-icon--sun terror-is-hidden" aria-hidden="true">☀</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<script>
+(function () {
+  function syncThemeIcon() {
+    var dark = document.documentElement.classList.contains("dark");
+    document.querySelectorAll(".terror-nav__theme-icon--moon").forEach(function (el) {
+      el.classList.toggle("terror-is-hidden", dark);
+    });
+    document.querySelectorAll(".terror-nav__theme-icon--sun").forEach(function (el) {
+      el.classList.toggle("terror-is-hidden", !dark);
+    });
+  }
+  var btn = document.querySelector("[data-terror-theme-toggle]");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      var next = document.documentElement.classList.contains("dark") ? "light" : "dark";
+      if (typeof setTheme === "function") {
+        setTheme(next);
+      }
+      try {
+        localStorage.setItem("color-theme", next);
+      } catch (e) {}
+      syncThemeIcon();
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", syncThemeIcon);
+  } else {
+    syncThemeIcon();
+  }
+  new MutationObserver(syncThemeIcon).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+})();
+</script>

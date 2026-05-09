@@ -1,21 +1,20 @@
 {{ define "main" }}
   {{- $readMore := (T "terror.readFull") -}}
-  {{- $pages := where site.RegularPages "Type" "blog" -}}
-  {{- $pages = sort $pages "Date" "desc" -}}
-  {{- $pagerSize := site.Params.blog.list.pagerSize | default 20 -}}
-  {{- $paginator := .Paginate $pages $pagerSize -}}
-
   <div class="terror-page">
     <div class="terror-page__grid">
       <div class="terror-page__main">
         <main id="content">
           <header class="terror-home__head">
-            <h2 class="terror-home__h2">{{ T "terror.latestArticles" }}</h2>
-            <span class="terror-home__hint">{{ T "terror.listHint" }}</span>
+            <h2 class="terror-home__h2">{{ .Title }}</h2>
+            <span class="terror-home__hint">{{ T "terror.topicHint" }}</span>
           </header>
 
+          <p class="terror-topic__browse-all">
+            <a href="{{ relLangURL "/tags/" }}" class="link-hover">{{ T "terror.allTopicsLink" }}</a>
+          </p>
+
           <div class="terror-home__list">
-            {{- range $paginator.Pages -}}
+            {{- range .Pages.ByDate.Reverse -}}
               <article class="terror-home__article">
                 <header>
                   {{ partial "terror-list-article-meta.html" . }}
@@ -28,14 +27,6 @@
               </article>
             {{- end -}}
           </div>
-
-          {{- if gt $paginator.TotalPages 1 -}}
-            {{ partial "components/blog-pager.html" $paginator }}
-          {{- end -}}
-
-          {{- if .Content -}}
-            <div class="post-content hx:mt-12">{{ .Content }}</div>
-          {{- end -}}
         </main>
       </div>
       {{ partial "terror-sidebar.html" . }}

@@ -1,64 +1,39 @@
 {{ define "main" }}
-  <div class="hx:mx-auto hx:flex hextra-max-page-width">
-    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
-    {{ partial "toc-if-enabled.html" . }}
-    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
-      <main id="content" class="site-prose hx:w-full hx:min-w-0 hextra-max-content-width hx:px-6 hx:pt-4 hx:md:px-12">
-        {{ partial "breadcrumb.html" (dict "page" . "enable" false) }}
-        {{ if .Title }}
-          <div class="hx:flex hx:flex-col hx:sm:flex-row hx:items-start hx:sm:items-center hx:sm:justify-between hx:gap-4 hx:mt-4">
-            <h1 class="hx:mb-0 hx:text-3xl hx:font-semibold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">{{ .Title }}</h1>
-            {{ partial "components/page-context-menu" . }}
-          </div>
-        {{ end }}
-        <div class="hx:mt-3 hx:mb-10 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2">
-          {{- with .Translations -}}
-            <span class="hx:mr-3 hx:inline-flex hx:flex-wrap hx:items-center hx:gap-x-2">
-              {{- range $i, $t := . -}}
-                {{- if $i }}<span class="hx:opacity-40" aria-hidden="true">|</span>{{ end -}}
-                <a class="hx:underline hx:underline-offset-2" href="{{ $t.RelPermalink }}" hreflang="{{ $t.Language.Lang }}">{{ upper $t.Language.Lang }}</a>
-              {{- end -}}
-            </span>
-            <span class="hx:mx-1 hx:opacity-40" aria-hidden="true">·</span>
-          {{- end -}}
-          {{- with $date := .Date }}<span class="hx:mr-1">{{ partial "utils/format-date" $date }}</span>{{ end -}}
-          {{- $lazyLoading := site.Params.enableImageLazyLoading | default true -}}
-          {{ if and .Date .Params.authors }}<span class="hx:mx-1">·</span>{{ end -}}
-          {{- with $.Params.authors -}}
-            {{- range $i, $author := . -}}
-              {{- if reflect.IsMap $author -}}
-                {{- if and $i (not $author.image) }}<span class="hx:mr-1">,</span>{{ end -}}
-                <a
-                  {{ with $author.link }}href="{{ . }}" target="_blank"{{ end }}
-                  class="hx:group hx:inline-flex hx:items-center hx:text-current hx:gap-x-1.5 hx:mx-1"
-                  {{ with $author.name }}title="{{ . }}"{{ end }}
-                >
-                  {{- with $image := $author.image }}
-                    {{- $isLocal := not (urls.Parse $image).Scheme -}}
-                    {{- $startsWithSlash := hasPrefix $image "/" -}}
-                    {{- if and $isLocal $startsWithSlash }}
-                      {{- $image = (relURL (strings.TrimPrefix "/" $image)) -}}
-                    {{ end -}}
-                    <img src="{{ $image | safeURL }}" alt="{{ $author.name }}" class="hx:inline-block hx:h-4 hx:w-4 hx:rounded-full" {{ if $lazyLoading }}loading="lazy"{{ end }} />
-                  {{ end -}}
-                  <div class="hx:group-hover:underline">{{ $author.name }}</div>
-                </a>
-              {{- else -}}
-                {{- if $i }}<span class="hx:mr-1">,</span>{{ end -}}<span class="hx:mx-1">{{ $author }}</span>
-              {{- end -}}
+  <div class="terror-page">
+    <div class="terror-page__grid">
+      <div class="terror-page__main">
+        <main id="content">
+          {{ if .Title }}
+            <h1 class="terror-article__title">{{ .Title }}</h1>
+          {{ end }}
+          <div class="terror-article__meta">
+            {{- with .Translations -}}
+              <span class="terror-lang-row">
+                {{- range $i, $t := . -}}
+                  {{- if $i }}<span class="terror-meta-sep" aria-hidden="true">·</span>{{ end -}}
+                  <a href="{{ $t.RelPermalink }}" hreflang="{{ $t.Language.Lang }}">{{ upper $t.Language.Lang }}</a>
+                {{- end -}}
+              </span>
+              <span class="terror-meta-sep" aria-hidden="true">·</span>
             {{- end -}}
-          {{- end -}}
-        </div>
-        <div class="content">
-          {{ .Content }}
-        </div>
-        {{- partial "components/last-updated.html" . -}}
-        {{- if (site.Params.blog.article.displayPagination | default true) -}}
-          {{- .Store.Set "reversePagination" (.Params.reversePagination | default true) -}}
-          {{- partial "components/pager.html" . -}}
-        {{ end }}
-        {{- partial "components/comments.html" . -}}
-      </main>
-    </article>
+            {{- with .Date -}}
+              <span>{{ partial "utils/format-date" . }}</span>
+            {{- end -}}
+            {{- with $.Params.category -}}
+              <span class="terror-meta-sep" aria-hidden="true">·</span>
+              <span>{{ . }}</span>
+            {{- end -}}
+          </div>
+          <div class="content post-content">{{ .Content }}</div>
+          {{- partial "components/last-updated.html" . -}}
+          {{- if (site.Params.blog.article.displayPagination | default true) -}}
+            {{- .Store.Set "reversePagination" (.Params.reversePagination | default true) -}}
+            {{- partial "components/pager.html" . -}}
+          {{ end }}
+          {{- partial "components/comments.html" . -}}
+        </main>
+      </div>
+      {{ partial "terror-sidebar.html" . }}
+    </div>
   </div>
 {{ end }}

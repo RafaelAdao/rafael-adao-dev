@@ -1,0 +1,27 @@
+<aside class="terror-sidebar" aria-label="{{ T "terror.sidebarAria" }}">
+  {{ partial "terror-search.html" . }}
+  <div class="terror-sidebar__card brutalist-shadow">
+    <h3 class="terror-sidebar__name">Rafael Adão</h3>
+    <p class="terror-sidebar__role">{{ T "terror.sidebarRole" }}</p>
+    <p class="terror-sidebar__bio">{{ T "terror.sidebarBio" }}</p>
+    <div class="terror-sidebar__social">
+      <a href="{{ site.Params.terror.githubURL | default `https://github.com/rafaeladao/` }}" target="_blank" rel="noopener noreferrer" class="terror-sidebar__social-link">{{ T "terror.linkGitHub" }}</a>
+      <a href="{{ site.Params.terror.linkedinURL | default `https://www.linkedin.com/in/rafael-adao/` }}" target="_blank" rel="noopener noreferrer" class="terror-sidebar__social-link">{{ T "terror.linkLinkedIn" }}</a>
+    </div>
+  </div>
+
+  <div class="terror-sidebar__topics">
+    <div class="terror-sidebar__topics-head">
+      <h3 class="terror-sidebar__topics-title">
+        <span class="terror-sidebar__topics-icon" aria-hidden="true">▸</span>
+        {{ T "terror.topicsTitle" }}
+      </h3>
+      <a href="{{ relLangURL "/tags/" }}" class="terror-sidebar__topics-index">{{ T "terror.allTopicsLinkShort" }}</a>
+    </div>
+    <div class="terror-sidebar__tags">
+      {{- range first 10 site.Taxonomies.tags.ByCount -}}
+        <a href="{{ .Page.RelPermalink }}" class="terror-sidebar__tag">{{ .Page.Title }}</a>
+      {{- end -}}
+    </div>
+  </div>
+</aside>
