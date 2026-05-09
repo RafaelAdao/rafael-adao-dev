@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{- $page := . -}}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    {{ partial "toc-if-enabled.html" . }}
+    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main id="content" class="site-prose site-prose--blog-index hx:w-full hx:min-w-0 hextra-max-content-width hx:px-6 hx:pt-4 hx:md:px-12">
+        {{ if .Title }}
+          <h1 class="hx:mt-4 hx:mb-2 hx:text-center hx:text-3xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:md:text-4xl hx:dark:text-slate-100">{{ .Title }}</h1>
+        {{ end }}
+        <p class="hx:mb-10 hx:flex hx:items-center hx:justify-center hx:gap-2 hx:text-sm hx:text-slate-600 hx:dark:text-slate-400">
+          {{- range $i, $lang := slice "pt" "en" -}}
+            {{- if $i -}}<span class="hx:opacity-40" aria-hidden="true"> | </span>{{- end -}}
+            {{- with index (where $page.AllTranslations "Lang" $lang) 0 -}}
+              <a class="hx:underline hx:underline-offset-4" href="{{ .RelPermalink }}"{{ if eq .Lang $page.Lang }} aria-current="page"{{ end }}>{{ upper $lang }}</a>
+            {{- end -}}
+          {{- end -}}
+        </p>
+        {{- if .Content -}}
+          <div class="content">{{ .Content }}</div>
+        {{- end -}}
+      </main>
+    </article>
+  </div>
+{{ end }}

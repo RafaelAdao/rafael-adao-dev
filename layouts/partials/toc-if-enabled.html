@@ -1,0 +1,8 @@
+{{- /* Calls theme toc only when front matter does not set toc: false (Hugo `false | default true` breaks booleans inside theme toc). */ -}}
+{{- $show := true -}}
+{{- if isset .Params "toc" -}}
+  {{- $show = .Params.toc -}}
+{{- end -}}
+{{- if $show -}}
+  {{- partial "toc.html" . -}}
+{{- end -}}

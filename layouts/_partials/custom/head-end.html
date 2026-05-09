@@ -1,0 +1,13 @@
+{{- if eq (site.Params.theme.default | default "light") "light" -}}
+<script>
+(function () {
+  try {
+    if (!("color-theme" in localStorage)) {
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add("light");
+      document.documentElement.style.colorScheme = "light";
+    }
+  } catch (e) {}
+})();
+</script>
+{{- end -}}

@@ -1,0 +1,7 @@
+{{- $title := .Get "title" -}}
+<section class="site-section hx:mt-10 hx:pt-8 hx:border-t hx:border-gray-200 hx:dark:border-neutral-800 hx:first:mt-6 hx:first:pt-0 hx:first:border-t-0">
+  {{- with $title -}}
+    <h2 class="hx:text-xl hx:font-semibold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100 hx:mb-3">{{ . }}</h2>
+  {{- end -}}
+  {{- .Inner | .Page.RenderString -}}
+</section>
