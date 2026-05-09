@@ -169,3 +169,1112 @@ html.dark .site-theme-selector__btn[aria-pressed="true"] {
 html.dark .site-theme-selector__btn[aria-pressed="false"]:hover {
   background: rgb(38 38 38);
 }
+
+/* --- Terror in Software (goal.html) --- */
+:root {
+  --terror-red: #991b1b;
+  --terror-max: 72rem;
+  --terror-border: 4px;
+  --terror-font-sans: "Inter", system-ui, sans-serif;
+  --terror-font-serif: "Merriweather", Georgia, serif;
+  --terror-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.terror-is-hidden {
+  display: none !important;
+}
+
+.terror-site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--terror-font-serif);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.light .terror-site,
+html:not(.dark) .terror-site {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+html.dark .terror-site {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+html.light ::selection,
+html:not(.dark) ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+html.dark ::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.brutalist-shadow {
+  box-shadow: 4px 4px 0 0 #000000;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+html.dark .brutalist-shadow {
+  box-shadow: 4px 4px 0 0 #ffffff;
+}
+
+.brutalist-shadow:hover {
+  box-shadow: 2px 2px 0 0 #000000;
+  transform: translate(2px, 2px);
+}
+
+html.dark .brutalist-shadow:hover {
+  box-shadow: 2px 2px 0 0 #ffffff;
+}
+
+.terror-header {
+  border-bottom: var(--terror-border) solid #000;
+  padding: 4rem 1rem 3rem;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+html.dark .terror-header {
+  border-bottom-color: #fff;
+}
+
+.terror-header__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.terror-header__title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.terror-header__title-link:hover {
+  color: var(--terror-red);
+}
+
+.terror-header__accent {
+  color: var(--terror-red);
+}
+
+.terror-header__tagline {
+  margin: 0;
+  font-family: var(--terror-font-mono);
+  font-size: clamp(0.8125rem, 2vw, 1rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #4b5563;
+}
+
+html.dark .terror-header__tagline {
+  color: #9ca3af;
+}
+
+.terror-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 2px solid #000;
+  background: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+html.dark .terror-nav {
+  border-bottom-color: #fff;
+  background: #000;
+}
+
+.terror-nav__inner {
+  max-width: var(--terror-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.terror-nav__inner::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .terror-nav__inner {
+    justify-content: center;
+    position: relative;
+  }
+
+  .terror-nav__tools {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.terror-nav__links {
+  display: flex;
+  flex: 1;
+  min-width: min-content;
+}
+
+@media (min-width: 768px) {
+  .terror-nav__links {
+    flex: none;
+  }
+}
+
+.terror-nav__item {
+  font-family: var(--terror-font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.terror-nav__item:hover {
+  background: #f3f4f6;
+}
+
+html.dark .terror-nav__item:hover {
+  background: #111827;
+}
+
+.terror-nav__item.is-active {
+  background: #000;
+  color: #fff;
+}
+
+html.dark .terror-nav__item.is-active {
+  background: #fff;
+  color: #000;
+}
+
+.terror-nav__tools {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .terror-nav__tools {
+    margin-left: 0;
+  }
+}
+
+.terror-nav__tool {
+  font-family: var(--terror-font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.terror-nav__tool:hover {
+  background: #f3f4f6;
+}
+
+html.dark .terror-nav__tool:hover {
+  background: #111827;
+}
+
+.terror-nav__theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+}
+
+.terror-nav__theme-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.terror-page {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--terror-max);
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  box-sizing: border-box;
+}
+
+.terror-page__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .terror-page__grid {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  .terror-page__main {
+    width: 66.666%;
+    flex-shrink: 0;
+  }
+
+  .terror-sidebar {
+    width: 33.333%;
+    flex-shrink: 0;
+    padding-left: 2rem;
+    border-left: 2px solid #000;
+  }
+
+  html.dark .terror-sidebar {
+    border-left-color: #fff;
+  }
+}
+
+.terror-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.terror-sidebar__search {
+  position: relative;
+  z-index: 30;
+  border: var(--terror-border) solid #000;
+  padding: 1rem;
+  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+html.dark .terror-sidebar__search {
+  border-color: #fff;
+  background: #000;
+}
+
+.terror-sidebar__search-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.terror-sidebar__search-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  opacity: 0.9;
+}
+
+.terror-sidebar__search-field {
+  position: relative;
+  width: 100%;
+}
+
+.terror-sidebar__search .hextra-search-input {
+  border-radius: 0 !important;
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem !important;
+  padding: 0.75rem !important;
+  color: #000 !important;
+}
+
+html.dark .terror-sidebar__search .hextra-search-input {
+  border-color: #fff !important;
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.terror-sidebar__search .hextra-search-input:focus-visible {
+  outline: 2px solid var(--terror-red);
+  outline-offset: 2px;
+  border-color: var(--terror-red) !important;
+}
+
+.terror-sidebar__search-kbd {
+  border-radius: 0 !important;
+}
+
+html.dark .terror-sidebar__search-kbd {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #e5e7eb !important;
+}
+
+.terror-sidebar__search-results {
+  border-radius: 0 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 4px 4px 0 0 #000 !important;
+}
+
+html.dark .terror-sidebar__search-results {
+  border-color: #fff !important;
+  box-shadow: 4px 4px 0 0 #fff !important;
+}
+
+.terror-sidebar__card {
+  border: var(--terror-border) solid #000;
+  padding: 1.5rem;
+  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+html.dark .terror-sidebar__card {
+  border-color: #fff;
+  background: #000;
+}
+
+.terror-sidebar__name {
+  margin: 0 0 0.5rem;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.terror-sidebar__role {
+  margin: 0 0 1rem;
+  font-family: var(--terror-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+html.dark .terror-sidebar__role {
+  color: #9ca3af;
+}
+
+.terror-sidebar__bio {
+  margin: 0 0 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #1f2937;
+}
+
+html.dark .terror-sidebar__bio {
+  color: #d1d5db;
+}
+
+.terror-sidebar__social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.terror-sidebar__social-link {
+  font-family: var(--terror-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  border: 2px solid #000;
+  padding: 0.35rem 0.65rem;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+html.dark .terror-sidebar__social-link {
+  border-color: #fff;
+}
+
+.terror-sidebar__social-link:hover {
+  color: var(--terror-red);
+}
+
+.terror-sidebar__topics {
+  margin-top: 0.5rem;
+}
+
+.terror-sidebar__topics-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+html.dark .terror-sidebar__topics-head {
+  border-bottom-color: #fff;
+}
+
+.terror-sidebar__topics-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+
+.terror-sidebar__topics-index {
+  font-family: var(--terror-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #000;
+  padding: 0.2rem 0.45rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+html.dark .terror-sidebar__topics-index {
+  border-color: #fff;
+}
+
+.terror-sidebar__topics-index:hover {
+  background: #000;
+  color: #fff;
+}
+
+html.dark .terror-sidebar__topics-index:hover {
+  background: #fff;
+  color: #000;
+}
+
+.terror-sidebar__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.terror-sidebar__tag {
+  font-family: var(--terror-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid #000;
+  padding: 0.25rem 0.5rem;
+  cursor: default;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.terror-sidebar__tag {
+  cursor: pointer;
+}
+
+html.dark .terror-sidebar__tag {
+  border-color: #fff;
+}
+
+.terror-sidebar__tag:hover {
+  background: #000;
+  color: #fff;
+}
+
+html.dark .terror-sidebar__tag:hover {
+  background: #fff;
+  color: #000;
+}
+
+.terror-sidebar__tag--muted {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.terror-topic__browse-all {
+  margin: 0 0 1.5rem;
+}
+
+.terror-topic__index-tags {
+  margin-top: 1.25rem;
+  gap: 0.65rem;
+}
+
+.terror-footer {
+  margin-top: auto;
+  border-top: var(--terror-border) solid #000;
+  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+html.dark .terror-footer {
+  border-top-color: #fff;
+  background: #000;
+}
+
+.terror-footer__inner {
+  max-width: var(--terror-max);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .terror-footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.terror-footer__brand {
+  margin: 0;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.terror-footer__brand-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.terror-footer__brand-link:hover {
+  color: var(--terror-red);
+}
+
+.terror-footer__copy {
+  margin: 0;
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: #1f2937;
+}
+
+html.dark .terror-footer__copy {
+  color: #9ca3af;
+}
+
+.terror-home__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+html.dark .terror-home__head {
+  border-bottom-color: #fff;
+}
+
+.terror-home__h2 {
+  margin: 0;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.terror-home__hint {
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+html.dark .terror-home__hint {
+  color: #9ca3af;
+}
+
+.terror-home__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.terror-home__article {
+  margin: 0;
+}
+
+.terror-home__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.terror-home__date {
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+html.dark .terror-home__date {
+  color: #9ca3af;
+}
+
+.terror-home__category {
+  display: inline-block;
+  font-family: var(--terror-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  background: #000;
+  color: #fff;
+}
+
+html.dark .terror-home__category {
+  background: #fff;
+  color: #000;
+}
+
+.terror-home__title {
+  margin: 0;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+}
+
+.terror-home__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.terror-home__title a:hover {
+  color: var(--terror-red);
+}
+
+.terror-home__summary {
+  margin: 1rem 0;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #1f2937;
+}
+
+html.dark .terror-home__summary {
+  color: #d1d5db;
+}
+
+.link-hover {
+  text-decoration: none;
+  box-shadow: inset 0 -2px 0 var(--terror-red);
+  transition: box-shadow 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  font-family: var(--terror-font-mono);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.link-hover:hover {
+  box-shadow: inset 0 -1.5em 0 var(--terror-red);
+  color: #ffffff;
+}
+
+html.dark .link-hover:hover {
+  color: #ffffff;
+}
+
+.post-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #1f2937;
+}
+
+html.dark .post-content {
+  color: #d1d5db;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content h2 {
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.875rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--terror-red);
+  padding-left: 1rem;
+  line-height: 1.25;
+}
+
+.post-content h3 {
+  font-family: var(--terror-font-sans);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-content ul {
+  list-style-type: square;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #000;
+  padding-left: 1.5rem;
+  font-style: italic;
+  margin: 2rem 0;
+  color: #4b5563;
+}
+
+html.dark .post-content blockquote {
+  border-left-color: #fff;
+  color: #9ca3af;
+}
+
+.post-content .highlight,
+.post-content pre {
+  margin: 1.5rem 0;
+}
+
+.post-content pre,
+.post-content .highlight pre {
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 0 #000;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background: #f9fafb !important;
+  color: #1f2937 !important;
+}
+
+html.dark .post-content pre,
+html.dark .post-content .highlight pre {
+  border-color: #fff;
+  box-shadow: 4px 4px 0 0 #fff;
+  background: #111827 !important;
+  color: #fff !important;
+}
+
+.post-content code {
+  font-family: var(--terror-font-mono);
+  font-size: 0.9em;
+}
+
+.post-content p code,
+.post-content li code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.1em 0.35em;
+}
+
+html.dark .post-content p code,
+html.dark .post-content li code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.terror-article__title {
+  margin: 0 0 1rem;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: #000;
+}
+
+html.dark .terror-article__title {
+  color: #fff;
+}
+
+.terror-article__meta {
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem;
+  color: #4b5563;
+  border-bottom: 2px solid #000;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+html.dark .terror-article__meta {
+  color: #9ca3af;
+  border-bottom-color: #fff;
+}
+
+.terror-static__title {
+  margin: 0 0 1.5rem;
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.terror-static h2 {
+  font-family: var(--terror-font-sans);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--terror-red);
+  padding-left: 1rem;
+}
+
+.terror-static h3 {
+  font-family: var(--terror-font-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.terror-resource-card {
+  border: 1px solid #000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.terror-resource-card h4 {
+  margin: 0 0 0.5rem;
+  font-family: var(--terror-font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+html.dark .terror-resource-card {
+  border-color: #fff;
+}
+
+.terror-resource-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .terror-resource-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.terror-resource-lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 2.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--terror-red);
+  font-style: italic;
+  color: #374151;
+}
+
+html.dark .terror-resource-lede {
+  color: #d1d5db;
+}
+
+.terror-resource-category {
+  margin-bottom: 3.5rem;
+}
+
+.terror-resource-category__title {
+  font-family: var(--terror-font-sans);
+  font-weight: 900;
+  font-size: 1.375rem;
+  text-transform: uppercase;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #d1d5db;
+  letter-spacing: 0.02em;
+}
+
+html.dark .terror-resource-category__title {
+  border-bottom-color: #374151;
+}
+
+.terror-resource-empty {
+  font-family: var(--terror-font-mono);
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+html.dark .terror-resource-empty {
+  color: #9ca3af;
+}
+
+.terror-resource-card--stack {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.terror-resource-card__label {
+  display: block;
+  font-family: var(--terror-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  margin: 0 0 0.35rem;
+}
+
+html.dark .terror-resource-card__label {
+  color: #9ca3af;
+}
+
+.terror-resource-card__author {
+  font-family: var(--terror-font-mono);
+  font-size: 0.875rem;
+  margin: 0 0 0.75rem;
+  color: #111827;
+}
+
+html.dark .terror-resource-card__author {
+  color: #e5e7eb;
+}
+
+.terror-resource-card__body {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #4b5563;
+  flex-grow: 1;
+}
+
+html.dark .terror-resource-card__body {
+  color: #9ca3af;
+}
+
+.terror-resource-card__footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px dashed #d1d5db;
+}
+
+html.dark .terror-resource-card__footer {
+  border-top-color: #374151;
+}
+
+.terror-resource-card__blog-link {
+  font-family: var(--terror-font-mono);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 2px solid transparent;
+}
+
+.terror-resource-card__blog-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.terror-resource-card__footer-more {
+  margin: 0.5rem 0 0;
+}
+
+.terror-resource-card__soon {
+  font-family: var(--terror-font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+html.dark .terror-resource-card__soon {
+  color: #9ca3af;
+}
+
+.terror-resource-card--span-full {
+  grid-column: 1 / -1;
+}
+
+.terror-about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.terror-about-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--terror-font-mono);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  border: 2px solid #000;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark .terror-about-btn {
+  background: #000;
+  border-color: #fff;
+  color: #fff;
+}
+
+.terror-about-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+html.dark .terror-about-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.terror-lang-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin-right: 0.75rem;
+}
+
+.terror-lang-row a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
