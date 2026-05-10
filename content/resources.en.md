@@ -22,22 +22,22 @@ sidebar:
 <h4>Kafka &amp; Karafka</h4>
 <p class="terror-resource-card__body">The unbeatable duo for event-driven architectures in Ruby. Allowed me to rewrite monolithic pipelines and cut infrastructure drastically.</p>
 <div class="terror-resource-card__footer">
-<a href="/en/2024/05/03/cdc-postgres-kafka-debezium/" class="terror-resource-card__blog-link">Details in post: CDC &amp; Kafka →</a>
+<a href="../2024/05/03/cdc-postgres-kafka-debezium/" class="terror-resource-card__blog-link">Details in post: CDC &amp; Kafka →</a>
 </div>
 </div>
 <div class="terror-resource-card brutalist-shadow terror-resource-card--stack">
 <h4>ClickHouse</h4>
 <p class="terror-resource-card__body">The performance monster for analytics and segmentation. If PostgreSQL tables started groaning, look into columnar DBs.</p>
 <div class="terror-resource-card__footer">
-<a href="/en/2025/02/22/exploring-clickhouse-beginners-journey/" class="terror-resource-card__blog-link">Post: Exploring ClickHouse →</a>
-<p class="terror-resource-card__footer-more"><a href="/en/2025/03/05/testando-funcoes-clickhouse-segmentacao/" class="terror-resource-card__blog-link">Post: Testing ClickHouse functions →</a></p>
+<a href="../2025/02/22/exploring-clickhouse-beginners-journey/" class="terror-resource-card__blog-link">Post: Exploring ClickHouse →</a>
+<p class="terror-resource-card__footer-more"><a href="../2025/03/05/testando-funcoes-clickhouse-segmentacao/" class="terror-resource-card__blog-link">Post: Testing ClickHouse functions →</a></p>
 </div>
 </div>
 <div class="terror-resource-card brutalist-shadow terror-resource-card--stack terror-resource-card--span-full">
 <h4>Debezium</h4>
 <p class="terror-resource-card__body">For me, the industry standard for Change Data Capture. Extracting the logical log from the database and converting it to stream without burdening the app.</p>
 <div class="terror-resource-card__footer">
-<a href="/en/2024/05/03/cdc-postgres-kafka-debezium/" class="terror-resource-card__blog-link">Mentioned in post: CDC &amp; Kafka →</a>
+<a href="../2024/05/03/cdc-postgres-kafka-debezium/" class="terror-resource-card__blog-link">Mentioned in post: CDC &amp; Kafka →</a>
 </div>
 </div>
 </div>
@@ -53,7 +53,7 @@ sidebar:
 <h4>Zettelkasten and learning resources</h4>
 <p class="terror-resource-card__body">Curated links on Zettelkasten and note-taking—articles, books, videos, and the GitHub guide.</p>
 <div class="terror-resource-card__footer">
-<a href="/en/2024/01/22/descubra-recursos-de-aprendizagem/" class="terror-resource-card__blog-link">In post: Discover learning resources on Zettelkasten! →</a>
+<a href="../2024/01/22/descubra-recursos-de-aprendizagem/" class="terror-resource-card__blog-link">In post: Discover learning resources on Zettelkasten! →</a>
 </div>
 </div>
 
