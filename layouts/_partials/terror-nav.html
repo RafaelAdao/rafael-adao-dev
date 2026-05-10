@@ -1,7 +1,8 @@
 {{- $p := . -}}
 {{- $articles := site.Home.RelPermalink -}}
-{{- $rec := relLangURL "/resources/" -}}
-{{- $about := relLangURL "/about/" -}}
+{{- /* relLangURL "/…" omits baseURL path segment on GitHub project Pages; use page permalinks. */ -}}
+{{- $rec := (site.GetPage "/resources").RelPermalink -}}
+{{- $about := (site.GetPage "/about").RelPermalink -}}
 {{- $pathClean := strings.TrimSuffix "/" $p.RelPermalink -}}
 {{- $recClean := strings.TrimSuffix "/" $rec -}}
 {{- $aboutClean := strings.TrimSuffix "/" $about -}}

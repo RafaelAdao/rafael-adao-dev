@@ -16,7 +16,7 @@
         <span class="terror-sidebar__topics-icon" aria-hidden="true">▸</span>
         {{ T "terror.topicsTitle" }}
       </h3>
-      <a href="{{ relLangURL "/tags/" }}" class="terror-sidebar__topics-index">{{ T "terror.allTopicsLinkShort" }}</a>
+      <a href="{{ (site.GetPage "/tags").RelPermalink }}" class="terror-sidebar__topics-index">{{ T "terror.allTopicsLinkShort" }}</a>
     </div>
     <div class="terror-sidebar__tags">
       {{- range first 10 site.Taxonomies.tags.ByCount -}}
